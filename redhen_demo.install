@@ -1,0 +1,248 @@
+<?php
+
+/**
+ * @file
+ *
+ */
+
+module_load_include('inc', 'devel_generate');
+
+/**
+ * Implements hook_install().
+ */
+function redhen_demo_install() {
+  include_once DRUPAL_ROOT . '/profiles/minimal/minimal.install';
+  minimal_install();
+
+  // Enable the admin theme.
+  db_update('system')
+    ->fields(array('status' => 1))
+    ->condition('type', 'theme')
+    ->condition('name', 'seven')
+    ->execute();
+  variable_set('admin_theme', 'seven');
+  variable_set('node_admin_theme', '1');
+
+  // misc variables
+  variable_set('redhen_contact_connect_users', TRUE);
+
+  //create Note type terms
+  redhen_demo_create_note_type_terms();
+  
+  // create base types
+  redhen_create_type('redhen_contact_type', 'Staff', 'staff');
+  redhen_create_type('redhen_contact_type', 'Management', 'management');
+  redhen_create_type('redhen_org_type', 'Company', 'company');
+  redhen_create_type('redhen_org_type', 'Household', 'household');
+  redhen_create_type('redhen_org_type', 'Association', 'association');
+
+  // create some organizations
+  redhen_demo_create_orgs(array('company', 'household', 'association'));
+
+  // create some contacts
+  redhen_demo_create_contacts(array('staff', 'management'));
+
+  // membership setup
+  redhen_demo_membership_setup();
+
+  // setup registrations
+  redhen_demo_registration_setup();
+
+  // setup some enagagement scores
+  redhen_demo_engagement_scores();
+}
+
+/**
+ * Helper to create contacts
+ *
+ * @param $bundles
+ *   Random bundle will be chosen
+ *
+ * @param int $number
+ */
+function redhen_demo_create_contacts($bundles, $number = 100) {
+  for($i=0; $i<$number; $i++) {
+    $bundle = $bundles[mt_rand(0, count($bundles)-1)];
+    $contact = new RedhenContact(array(
+      'type' => $bundle,
+      'first_name' => devel_generate_word(mt_rand(3, 10)),
+      'last_name' => devel_generate_word(mt_rand(5, 20))
+    ));
+    $contact->setEmail(
+      devel_generate_word(mt_rand(5, 20)) . '@' .
+      devel_generate_word(mt_rand(5, 20)) . '.' .
+      devel_generate_word(3)
+    );
+    $contact->save();
+    if ($i >= 0 and $i <10) {
+      $note = new RedhenNote(array(
+        'type' => 'redhen_note',
+        'entity_type' => 'redhen_contact',
+        'entity_id' => $contact->contact_id,
+        'author_uid' => 1,
+      ));
+      $note->redhen_note_body[LANGUAGE_NONE][0]['value'] = devel_generate_word(mt_rand(5, 20));
+      $note->redhen_note_type[LANGUAGE_NONE][0]['tid'] = rand(1,2);
+      $note->save();
+    }
+  }
+}
+
+/**
+ * Helper to create orgs
+ *
+ * @param $bundles
+ *   Random bundle will be chosen
+ *
+ * @param int $number
+ */
+function redhen_demo_create_orgs($bundles, $number = 50) {
+  for($i=0; $i < $number; $i++) {
+    $bundle = $bundles[mt_rand(0, count($bundles)-1)];
+    $org = new RedhenOrg(array(
+      'type' => $bundle,
+      'label' => devel_generate_word(mt_rand(5, 20)),
+    ));
+    $org->save();
+    if ($i >= 0 and $i <10) {
+      $note = new RedhenNote(array(
+        'type' => 'redhen_note',
+        'entity_type' => 'redhen_org',
+        'entity_id' => $org->org_id,
+        'author_uid' => 1,
+      ));
+      $note->redhen_note_body[LANGUAGE_NONE][0]['value'] = devel_generate_word(mt_rand(5, 20));
+      $note->redhen_note_type[LANGUAGE_NONE][0]['tid'] = rand(1,2);
+      $note->save();
+    }
+  }
+}
+
+/**
+ * Create a simple bundle/type
+ *
+ * @param $type
+ * @param $label
+ * @param $bundle
+ * @param array $values
+ */
+function redhen_create_type($type, $label, $bundle, $values = array()) {
+  $contact_type = entity_create($type, $values);
+  $contact_type->label = $label;
+  $contact_type->name = $bundle;
+  $contact_type->save();
+}
+
+/*
+ * Create note type terms
+ */
+function redhen_demo_create_note_type_terms() {
+  $note_type_taxonomy = taxonomy_vocabulary_machine_name_load('note_type');
+  
+  $terms = array('One', 'Two');
+  
+  foreach ($terms as $termname) {
+    $term = new stdClass();
+    $term->name = $termname;
+    $term->vid = $note_type_taxonomy->vid;
+    taxonomy_term_save($term);
+  }
+}
+
+/**
+ * Setup redhen registration stuff.
+ */
+function redhen_demo_registration_setup() {
+  registration_type_save(new RegistrationType(array(
+    'name' => 'registration_type_1',
+    'label' => 'Registration Type 1'
+  )));
+
+  // create event content type
+  $types = array(
+    array(
+      'type' => 'event',
+      'name' => st('Event'),
+      'base' => 'node_content',
+      'description' => st("An event that you can register for."),
+      'custom' => 1,
+      'modified' => 1,
+      'locked' => 0,
+    ),
+  );
+
+  foreach ($types as $type) {
+    $type = node_type_set_defaults($type);
+    node_type_save($type);
+    node_add_body_field($type);
+  }
+
+  field_create_field(array(
+    'field_name' => 'field_registration',
+    'type' => 'registration'
+  ));
+
+  field_create_instance(array(
+    'field_name' => 'field_registration',
+    'entity_type' => 'node',
+    'bundle' => 'event',
+    'label' => 'Registration'
+  ));
+
+  $node = new stdClass();
+  $node->type = 'event';
+  node_object_prepare($node);
+  $node->title = 'Test Event';
+  $node->body = devel_create_content();
+  $node->uid = 1;
+  $node->field_registration[LANGUAGE_NONE][0] = 'registration_type_1';
+  node_save($node);
+}
+
+/**
+ * Setup membership types and roles
+ */
+function redhen_demo_membership_setup() {
+  $role_name = 'Premium';
+  $role = new stdClass();
+  $role->name = $role_name;
+  user_role_save($role);
+  $premium_role_id = user_role_load_by_name($role_name)->rid;
+
+  // create some membership types
+  $membership_type = entity_create('redhen_membership_type', array());
+  $membership_type->label = 'Standard';
+  $membership_type->name = 'standard';
+  $membership_type->save();
+
+  $membership_type = entity_create('redhen_membership_type', array());
+  $membership_type->label = 'Premium';
+  $membership_type->name = 'premium';
+  $membership_type->role_id = $premium_role_id;
+  $membership_type->save();
+}
+
+/**
+ * Setup some engagement scores.
+ */
+function redhen_demo_engagement_scores() {
+  $score = new RedhenEngagementScore(array(
+    'label' => 'Engagement Score 1',
+    'score' => 10,
+    'name' => 'engagement_score_1'
+  ));
+  $score->save();
+
+  $score = new RedhenEngagementScore(array(
+    'label' => 'Engagement Score 2',
+    'score' => 5,
+    'name' => 'engagement_score_2'
+  ));
+  $score->save();
+
+  for ($i=1; $i<100; $i++) {
+    $contact_id = mt_rand(1, 100);
+    $engagement = redhen_engagement_create('engagement_score_' . mt_rand(1,2), $contact_id, devel_generate_word(mt_rand(10,30)));
+    redhen_engagement_save($engagement);
+  }
+}

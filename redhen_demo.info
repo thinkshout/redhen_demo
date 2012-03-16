@@ -1,0 +1,31 @@
+name = RedHen CRM Demo
+description = An installation profile for demonstrating RedHen CRM
+core = 7.x
+
+; core
+dependencies[] = block
+dependencies[] = help
+dependencies[] = menu
+dependencies[] = dblog
+dependencies[] = field
+dependencies[] = field_ui
+dependencies[] = list
+
+; contrib
+dependencies[] = admin_menu
+dependencies[] = devel
+dependencies[] = devel_generate
+dependencies[] = token
+dependencies[] = entity
+dependencies[] = relation
+dependencies[] = registration
+
+; redhen
+dependencies[] = redhen
+dependencies[] = redhen_contact
+dependencies[] = redhen_org
+dependencies[] = redhen_relation
+dependencies[] = redhen_membership
+dependencies[] = redhen_note
+dependencies[] = redhen_engagement
+dependencies[] = redhen_registration
