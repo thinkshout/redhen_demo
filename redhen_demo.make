@@ -4,22 +4,21 @@ core = 7.x
 api = 2
 projects[drupal][version] = "7.12"
 
-; RedHen Module Suite
+; RedHen module suite
 projects[redhen][type] = "module"
-projects[redhen][subdir] = "redhen"
 projects[redhen][download][type] = "git"
 projects[redhen][download][url] = "git://git.drupal.org/project/redhen.git"
 projects[redhen][download][branch] = "master"
 
-; RedHen Dependencies
+; RedHen dependencies
 projects[relation][subdir] = "contrib"
 projects[entity][subdir] = "contrib"
 projects[ctools] = "1.x-dev"
 projects[ctools][subdir] = "contrib"
 projects[registration][subdir] = "contrib"
 
-; Additional Contrib Modules and Themes (Not Required)
-projects[] = admin_menu
+; Additional contrib modules and themes (Not required)
+projects[admin_menu] = "contrib"
 projects[features][subdir] = "contrib"
 projects[rules][subdir] = "contrib"
 projects[token][subdir] = "contrib"
@@ -27,7 +26,14 @@ projects[strongarm][subdir] = "contrib"
 projects[views][subdir] = "contrib"
 projects[adaptivetheme][type] = "theme"
 projects[at-commerce][type] = "theme"
+projects[at-commerce] = "7.x-2.0-rc3"
 
-; Developer Tools
+; Developer tools
 projects[devel][subdir] = "developer"
 projects[diff][subdir] = "developer"
+
+; Additional helper libraries (Not required)
+libraries[ts_install_helpers][download][type] = git
+libraries[ts_install_helpers][download][url] = git@github.com:thinkshout/ts_install_helpers.git
+libraries[ts_install_helpers][download][branch] = master
+libraries[ts_install_helpers][destination] = "."
