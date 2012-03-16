@@ -26,7 +26,7 @@ projects[strongarm][subdir] = "contrib"
 projects[views][subdir] = "contrib"
 projects[adaptivetheme][type] = "theme"
 projects[at-commerce][type] = "theme"
-projects[at-commerce] = "7.x-2.0-rc3"
+projects[at-commerce] = "2.0-rc3"
 
 ; Developer tools
 projects[devel][subdir] = "developer"

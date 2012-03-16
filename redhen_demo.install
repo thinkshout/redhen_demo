@@ -11,8 +11,6 @@ module_load_include('inc', 'devel_generate');
  * Implements hook_install().
  */
 function redhen_demo_install() {
-  include_once DRUPAL_ROOT . '/profiles/minimal/minimal.install';
-  minimal_install();
 
   // Set the admin theme. (NOTE: We don't want to enable it.)
   variable_set('admin_theme', 'seven');
