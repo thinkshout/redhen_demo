@@ -4,29 +4,30 @@ core = 7.x
 api = 2
 projects[drupal][version] = "7.12"
 
-; Standard Contrib Modules
-projects[] = admin_menu
-projects[ctools] = "1.x-dev"
-projects[] = commerce
-projects[] = devel
-projects[] = relation
-projects[] = rules
-projects[] = token
-projects[] = views
-
-; Modules we want to checkout to work on
-projects[entity][type] = "module"
-projects[entity][download][type] = "git"
-projects[entity][download][url] = "git://git.drupal.org/project/entity.git"
-projects[entity][download][branch] = "7.x-1.x"
-
-projects[registration][type] = "module"
-projects[registration][download][type] = "git"
-projects[registration][download][url] = "git://git.drupal.org/project/registration.git"
-projects[registration][download][branch] = "7.x-1.x"
-
 ; RedHen Module Suite
 projects[redhen][type] = "module"
+projects[redhen][subdir] = "redhen"
 projects[redhen][download][type] = "git"
 projects[redhen][download][url] = "git://git.drupal.org/project/redhen.git"
 projects[redhen][download][branch] = "master"
+
+; RedHen Dependencies
+projects[relation][subdir] = "contrib"
+projects[entity][subdir] = "contrib"
+projects[ctools] = "1.x-dev"
+projects[ctools][subdir] = "contrib"
+projects[registration][subdir] = "contrib"
+
+; Additional Contrib Modules and Themes (Not Required)
+projects[] = admin_menu
+projects[features][subdir] = "contrib"
+projects[rules][subdir] = "contrib"
+projects[token][subdir] = "contrib"
+projects[strongarm][subdir] = "contrib"
+projects[views][subdir] = "contrib"
+projects[adaptivetheme][type] = "theme"
+projects[at-commerce][type] = "theme"
+
+; Developer Tools
+projects[devel][subdir] = "developer"
+projects[diff][subdir] = "developer"

@@ -2,25 +2,38 @@ name = RedHen CRM Demo
 description = An installation profile for demonstrating RedHen CRM
 core = 7.x
 
-; core
+; Core modules required by RedHen and Drupal
 dependencies[] = block
-dependencies[] = help
-dependencies[] = menu
-dependencies[] = dblog
 dependencies[] = field
 dependencies[] = field_ui
+dependencies[] = menu
+dependencies[] = taxonomy
+
+; Core modules for demonstration purposes
+dependencies[] = contextual
+dependencies[] = dblog
+dependencies[] = help
 dependencies[] = list
 
-; contrib
-dependencies[] = admin_menu
-dependencies[] = devel
-dependencies[] = devel_generate
-dependencies[] = token
+; Required Contrib
+dependencies[] = ctools
 dependencies[] = entity
 dependencies[] = relation
 dependencies[] = registration
 
-; redhen
+; Demo Contrib
+dependencies[] = admin_menu
+dependencies[] = features
+dependencies[] = strongarm
+dependencies[] = token
+dependencies[] = rules
+
+; Developer Tools
+dependencies[] = devel
+dependencies[] = devel_generate
+dependencies[] = diff
+
+; RedHen Module Suite
 dependencies[] = redhen
 dependencies[] = redhen_contact
 dependencies[] = redhen_org
