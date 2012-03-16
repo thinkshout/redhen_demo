@@ -31,9 +31,3 @@ projects[at-commerce] = "7.x-2.0-rc3"
 ; Developer tools
 projects[devel][subdir] = "developer"
 projects[diff][subdir] = "developer"
-
-; Additional helper libraries (Not required)
-libraries[ts_install_helpers][download][type] = git
-libraries[ts_install_helpers][download][url] = git@github.com:thinkshout/ts_install_helpers.git
-libraries[ts_install_helpers][download][branch] = master
-libraries[ts_install_helpers][destination] = "."
