@@ -19,21 +19,9 @@ function redhen_demo_install() {
   // Enable contrib themes and set the default theme.
   theme_enable(array('adaptivetheme', 'at-commerce'));
   variable_set('theme_default', 'at-commerce');
-  // Disable Bartik - knowing site admins can re-enable it later.
-  theme_disable(array('bartik'));
-
-  // misc variables
-  variable_set('redhen_contact_connect_users', TRUE);
 
   //create Note type terms
   redhen_demo_create_note_type_terms();
-  
-  // create base types
-  redhen_create_type('redhen_contact_type', 'Staff', 'staff');
-  redhen_create_type('redhen_contact_type', 'Management', 'management');
-  redhen_create_type('redhen_org_type', 'Company', 'company');
-  redhen_create_type('redhen_org_type', 'Household', 'household');
-  redhen_create_type('redhen_org_type', 'Association', 'association');
 
   // create some organizations
   redhen_demo_create_orgs(array('company', 'household', 'association'));
@@ -117,28 +105,13 @@ function redhen_demo_create_orgs($bundles, $number = 50) {
   }
 }
 
-/**
- * Create a simple bundle/type
- *
- * @param $type
- * @param $label
- * @param $bundle
- * @param array $values
- */
-function redhen_create_type($type, $label, $bundle, $values = array()) {
-  $contact_type = entity_create($type, $values);
-  $contact_type->label = $label;
-  $contact_type->name = $bundle;
-  $contact_type->save();
-}
-
 /*
  * Create note type terms
  */
 function redhen_demo_create_note_type_terms() {
   $note_type_taxonomy = taxonomy_vocabulary_machine_name_load('note_type');
   
-  $terms = array('One', 'Two');
+  $terms = array('Phone call', 'Email', 'Meeting note');
   
   foreach ($terms as $termname) {
     $term = new stdClass();
@@ -152,42 +125,7 @@ function redhen_demo_create_note_type_terms() {
  * Setup redhen registration stuff.
  */
 function redhen_demo_registration_setup() {
-  registration_type_save(new RegistrationType(array(
-    'name' => 'registration_type_1',
-    'label' => 'Registration Type 1'
-  )));
-
-  // create event content type
-  $types = array(
-    array(
-      'type' => 'event',
-      'name' => st('Event'),
-      'base' => 'node_content',
-      'description' => st("An event that you can register for."),
-      'custom' => 1,
-      'modified' => 1,
-      'locked' => 0,
-    ),
-  );
-
-  foreach ($types as $type) {
-    $type = node_type_set_defaults($type);
-    node_type_save($type);
-    node_add_body_field($type);
-  }
-
-  field_create_field(array(
-    'field_name' => 'field_registration',
-    'type' => 'registration'
-  ));
-
-  field_create_instance(array(
-    'field_name' => 'field_registration',
-    'entity_type' => 'node',
-    'bundle' => 'event',
-    'label' => 'Registration'
-  ));
-
+  
   $node = new stdClass();
   $node->type = 'event';
   node_object_prepare($node);
