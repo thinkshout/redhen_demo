@@ -11,6 +11,10 @@ module_load_include('inc', 'devel_generate');
  * Implements hook_install().
  */
 function redhen_demo_install() {
+  
+  include_once 'ts_install_helpers/ts_install_helpers.crud.inc'; // Load helper functions.
+
+  variable_set('site_name',  'RedHen CRM Demonstration');
 
   // Set the admin theme. (NOTE: We don't want to enable it.)
   variable_set('admin_theme', 'seven');
@@ -20,17 +24,53 @@ function redhen_demo_install() {
   theme_enable(array('adaptivetheme', 'at_commerce'));
   variable_set('theme_default', 'at_commerce');
 
-  //create Note type terms
+  // Create "note type" taxonomy terms
   redhen_demo_create_note_type_terms();
 
-  // create some organizations
+  // Create some organizations
   redhen_demo_create_orgs(array('company', 'household', 'association'));
 
-  // create some contacts
-  //redhen_demo_create_contacts(array('staff', 'management'));
+  // Create some contacts
+  redhen_demo_create_contacts(array('staff', 'management'));
 
-  // setup registrations
+  // Setup registrations
   redhen_demo_registration_setup();
+  
+  // Setup Main Menu items.
+  $coded_menu_items = array(
+    'redhen' => array('link_title' => 'RedHen Dashboard', 'menu-name' => 'main-menu', 'weight' => -20),
+    'redhen/contact/add' => array('link_title' => 'Add contacts', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen'),
+  );
+  ts_install_helpers_crud_create_menu_items($coded_menu_items);
+  
+  // Set up some blocks
+  $blocks = array(
+    array(
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => 'at_commerce',
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'superfish',
+      'delta' => '1',
+      'theme' => 'at_commerce',
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'menu_bar',
+      'pages' => '',
+      'cache' => -1,
+    ),
+  );
+  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
+  foreach ($blocks as $block) {
+    $query->values($block);
+  }
+  $query->execute();
 }
 
 /**

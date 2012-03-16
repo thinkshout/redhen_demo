@@ -24,7 +24,9 @@ dependencies[] = registration
 ; Demo contrib
 dependencies[] = admin_menu
 dependencies[] = features
+dependencies[] = libraries
 dependencies[] = strongarm
+dependencies[] = superfish
 dependencies[] = token
 dependencies[] = rules
 
