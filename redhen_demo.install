@@ -29,14 +29,8 @@ function redhen_demo_install() {
   // create some contacts
   redhen_demo_create_contacts(array('staff', 'management'));
 
-  // membership setup
-  redhen_demo_membership_setup();
-
   // setup registrations
   redhen_demo_registration_setup();
-
-  // setup some enagagement scores
-  redhen_demo_engagement_scores();
 }
 
 /**
@@ -134,52 +128,4 @@ function redhen_demo_registration_setup() {
   $node->uid = 1;
   $node->field_registration[LANGUAGE_NONE][0] = 'registration_type_1';
   node_save($node);
-}
-
-/**
- * Setup membership types and roles
- */
-function redhen_demo_membership_setup() {
-  $role_name = 'Premium';
-  $role = new stdClass();
-  $role->name = $role_name;
-  user_role_save($role);
-  $premium_role_id = user_role_load_by_name($role_name)->rid;
-
-  // create some membership types
-  $membership_type = entity_create('redhen_membership_type', array());
-  $membership_type->label = 'Standard';
-  $membership_type->name = 'standard';
-  $membership_type->save();
-
-  $membership_type = entity_create('redhen_membership_type', array());
-  $membership_type->label = 'Premium';
-  $membership_type->name = 'premium';
-  $membership_type->role_id = $premium_role_id;
-  $membership_type->save();
-}
-
-/**
- * Setup some engagement scores.
- */
-function redhen_demo_engagement_scores() {
-  $score = new RedhenEngagementScore(array(
-    'label' => 'Engagement Score 1',
-    'score' => 10,
-    'name' => 'engagement_score_1'
-  ));
-  $score->save();
-
-  $score = new RedhenEngagementScore(array(
-    'label' => 'Engagement Score 2',
-    'score' => 5,
-    'name' => 'engagement_score_2'
-  ));
-  $score->save();
-
-  for ($i=1; $i<100; $i++) {
-    $contact_id = mt_rand(1, 100);
-    $engagement = redhen_engagement_create('engagement_score_' . mt_rand(1,2), $contact_id, devel_generate_word(mt_rand(10,30)));
-    redhen_engagement_save($engagement);
-  }
 }
