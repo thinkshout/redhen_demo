@@ -31,3 +31,4 @@ projects[at-commerce] = "2.0-rc3"
 ; Developer tools
 projects[devel][subdir] = "developer"
 projects[diff][subdir] = "developer"
+projects[ftools][subdir] = "developer"

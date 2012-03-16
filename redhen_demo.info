@@ -32,6 +32,7 @@ dependencies[] = rules
 dependencies[] = devel
 dependencies[] = devel_generate
 dependencies[] = diff
+dependencies[] = features_tools
 
 ; RedHen Module Suite
 dependencies[] = redhen

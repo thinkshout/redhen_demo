@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the RedHen Features feature.
+ */
+
+include_once('redhen_features.features.inc');
