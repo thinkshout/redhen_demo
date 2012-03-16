@@ -27,7 +27,7 @@ function redhen_demo_install() {
   redhen_demo_create_orgs(array('company', 'household', 'association'));
 
   // create some contacts
-  redhen_demo_create_contacts(array('staff', 'management'));
+  //redhen_demo_create_contacts(array('staff', 'management'));
 
   // setup registrations
   redhen_demo_registration_setup();
