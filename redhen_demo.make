@@ -18,7 +18,7 @@ projects[ctools][subdir] = "contrib"
 projects[registration][subdir] = "contrib"
 
 ; Additional contrib modules and themes (Not required)
-projects[admin_menu] = "contrib"
+projects[admin_menu][subdir] = "contrib"
 projects[features][subdir] = "contrib"
 projects[rules][subdir] = "contrib"
 projects[token][subdir] = "contrib"

@@ -15,26 +15,26 @@ dependencies[] = dblog
 dependencies[] = help
 dependencies[] = list
 
-; Required Contrib
+; Required contrib
 dependencies[] = ctools
 dependencies[] = entity
 dependencies[] = relation
 dependencies[] = registration
 
-; Demo Contrib
+; Demo contrib
 dependencies[] = admin_menu
 dependencies[] = features
 dependencies[] = strongarm
 dependencies[] = token
 dependencies[] = rules
 
-; Developer Tools
+; Developer tools
 dependencies[] = devel
 dependencies[] = devel_generate
 dependencies[] = diff
 dependencies[] = features_tools
 
-; RedHen Module Suite
+; RedHen module suite
 dependencies[] = redhen
 dependencies[] = redhen_contact
 dependencies[] = redhen_org
@@ -43,3 +43,6 @@ dependencies[] = redhen_membership
 dependencies[] = redhen_note
 dependencies[] = redhen_engagement
 dependencies[] = redhen_registration
+
+; RedHen demo features
+dependencies[] = redhen_features

@@ -17,8 +17,8 @@ function redhen_demo_install() {
   variable_set('node_admin_theme', '1');
   
   // Enable contrib themes and set the default theme.
-  theme_enable(array('adaptivetheme', 'at-commerce'));
-  variable_set('theme_default', 'at-commerce');
+  theme_enable(array('adaptivetheme', 'at_commerce'));
+  variable_set('theme_default', 'at_commerce');
 
   //create Note type terms
   redhen_demo_create_note_type_terms();

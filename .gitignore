@@ -1,5 +1,6 @@
 .DS_Store
 libraries
 themes
+modules/redhen
 modules/contrib
 modules/developer
