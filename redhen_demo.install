@@ -43,6 +43,8 @@ function redhen_demo_install() {
   $coded_menu_items = array(
     'redhen' => array('link_title' => 'RedHen Dashboard', 'menu-name' => 'main-menu', 'weight' => -20),
     'redhen/contact/add' => array('link_title' => 'Add contacts', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen'),
+    'redhen/contact/add/staff' => array('link_title' => 'Add staff', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen/contact/add'),
+    'redhen/contact/add/management' => array('link_title' => 'Add managers', 'menu-name' => 'main-menu', 'weight' => -10, 'parent_path' => 'redhen/contact/add/management'),
   );
   ts_install_helpers_crud_create_menu_items($coded_menu_items);
   
