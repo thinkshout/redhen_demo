@@ -357,20 +357,32 @@ function random_data_last_name() {
  * Helper function for pulling random organizations.
  */
 function random_data_organization() {
-
-  $organizations = array(
-    array('domain' => 'com', 'name' => 'ABC Brewing'),
-    array('domain' => 'com', 'name' => 'Lewis Electric'),  
-    array('domain' => 'com', 'name' => 'Migration Brewing'),  
-    array('domain' => 'org', 'name' => 'Curious Comedy'),  
-    array('domain' => 'com', 'name' => 'Voodoo Donuts'),  
-    array('domain' => 'com', 'name' => 'Sardine Cafe'),  
-    array('domain' => 'com', 'name' => 'Grand Bread'),  
-    array('domain' => 'com', 'name' => 'Lincoln Taxi'),  
-    array('domain' => 'org', 'name' => 'Rose City Family Practice'),  
-    array('domain' => 'com', 'name' => 'Burside Good Eats'),  
-  );
   
+  $organizations = random_data_get_all_orgs();
   $org = array_rand($organizations, 1);
   return $organizations[$org];
+}
+
+/**
+ * Helper function for getting an array of organizations.
+ */
+function random_data_get_all_orgs() {
+  
+  $organizations = array(
+    array('type' => 'shelter', 'domain' => 'org', 'name' => 'Lucky Critters Shelter'),
+    array('type' => 'shelter', 'domain' => 'org', 'name' => 'Rose City Squirrel Shelter'),  
+    array('type' => 'shelter', 'domain' => 'org', 'name' => 'A Horse is a Horse Of Course Adoptions'),
+    array('type' => 'foundation', 'domain' => 'org', 'name' => 'Oregon Foundation for Animal Shelters'),
+    array('type' => 'foundation', 'domain' => 'org', 'name' => 'NYC Cares About Pets'),
+    array('type' => 'shelter', 'domain' => 'org', 'name' => 'Fish Have Feelings Too'),
+    array('type' => 'foundation', 'domain' => 'org', 'name' => 'Society for the Ethical Treatment of Clams'),
+    array('type' => 'shelter', 'domain' => 'org', 'name' => 'Crouching Tigers Need a Home'),
+    array('type' => 'foundation', 'domain' => 'org', 'name' => 'Cat People Care'),
+    array('type' => 'shelter', 'domain' => 'org', 'name' => 'Bark If You Love Cats'),
+    array('type' => 'business', 'domain' => 'com', 'name' => 'Beautiful Pets'),
+    array('type' => 'business', 'domain' => 'com', 'name' => 'One Fish Two Fish'),
+    array('type' => 'business', 'domain' => 'com', 'name' => 'Pet Supplies Are Us'),
+  );
+  
+  return $organizations;
 }
