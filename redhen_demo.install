@@ -12,6 +12,9 @@ module_load_include('inc', 'devel_generate');
  */
 function redhen_demo_install() {
   
+  // Enable "Superfish" module - not sure why we can't do that from the .info file.
+  module_enable(array('superfish'));
+  
   include_once 'ts_install_helpers/ts_install_helpers.crud.inc'; // Load helper functions.
 
   variable_set('site_name',  'RedHen CRM Demonstration');

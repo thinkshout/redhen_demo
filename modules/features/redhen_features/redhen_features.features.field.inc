@@ -144,6 +144,104 @@ function redhen_features_field_default_fields() {
     ),
   );
 
+  // Exported field: 'redhen_contact-management-redhen_contact_email'
+  $fields['redhen_contact-management-redhen_contact_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'redhen_contact_email',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'redhen_fields',
+      'settings' => array(
+        'labels' => array(
+          0 => 'home',
+          1 => 'work',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'redhen_email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'management',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'redhen_fields',
+          'settings' => array(),
+          'type' => 'redhen_email_formatter',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'redhen_contact',
+      'field_name' => 'redhen_contact_email',
+      'label' => 'Email',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'redhen_fields',
+        'settings' => array(),
+        'type' => 'redhen_email_widget',
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported field: 'redhen_contact-staff-redhen_contact_email'
+  $fields['redhen_contact-staff-redhen_contact_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'redhen_contact_email',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'redhen_fields',
+      'settings' => array(
+        'labels' => array(
+          0 => 'home',
+          1 => 'work',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'redhen_email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'staff',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'redhen_fields',
+          'settings' => array(),
+          'type' => 'redhen_email_formatter',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'redhen_contact',
+      'field_name' => 'redhen_contact_email',
+      'label' => 'Email',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'redhen_fields',
+        'settings' => array(),
+        'type' => 'redhen_email_widget',
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported field: 'redhen_note-redhen_note-redhen_note_body'
   $fields['redhen_note-redhen_note-redhen_note_body'] = array(
     'field_config' => array(
@@ -554,6 +652,7 @@ function redhen_features_field_default_fields() {
   t('Affiliation Status');
   t('Body');
   t('Connection Status');
+  t('Email');
   t('Message');
   t('Organization Role');
   t('Registration');
