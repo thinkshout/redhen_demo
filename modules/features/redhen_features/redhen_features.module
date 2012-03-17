@@ -5,3 +5,43 @@
  */
 
 include_once('redhen_features.features.inc');
+
+/**
+ * Implements hook_block_info().
+ */
+function redhen_features_block_info() {
+  $blocks['redhen_info'] = array(
+    'info' => t('About RedHen CRM'), 
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['redhen_logo'] = array(
+    'info' => t('RedHen CRM logo'), 
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function redhen_features_block_view($delta = '') {
+  
+  $logo = drupal_get_path('module', 'redhen') . '/misc/redhen_logo.png';
+  
+  $block = array();
+
+  switch ($delta) {
+    case 'redhen_info':
+      $block['subject'] = t('');
+      $block['content'] = '<div style="float:left;"><a href="http://redhencrm.com">RedHen CRM</a> is brought to you by <a href="http://thinkshout.com">ThinkShout</a>. We help progressive organizations achieve their goals by leveraging web and open source technologies. We treat our business and nonprofit clients as partners. Our motivation comes from knowing that they make the world a better place.</div>';
+      break;
+
+    case 'redhen_logo':
+      $block['subject'] = t('');
+      $block['content'] = '<div style="float:right"><a href="http://redhencrm.com"><img src="' . $logo . '" /></a></div>';
+      break;
+    }
+      
+  return $block;
+}
