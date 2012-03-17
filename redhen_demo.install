@@ -141,11 +141,14 @@ function redhen_demo_install() {
  * @param int $number
  */
 function redhen_demo_create_contacts($bundles, $number = 100) {
-  include_once 'ts_install_helpers/randon_data.inc'; // Load randomized contact data.
+  include_once 'ts_install_helpers/random_data.inc'; // Load randomized contact data.
   
   for($i=0; $i<$number; $i++) {
     $first_name = random_data_first_name();
-    $last_name = randon_data_last_name();
+    $last_name = random_data_last_name();
+    $org = random_data_organization();
+    $organization = $org['name'];
+    $domain = $org['domain'];
     $bundle = $bundles[mt_rand(0, count($bundles)-1)];
     $contact = new RedhenContact(array(
       'type' => $bundle,
@@ -153,9 +156,9 @@ function redhen_demo_create_contacts($bundles, $number = 100) {
       'last_name' => $last_name,
     ));
     $contact->setEmail(
-      $first_name . '@' .
-      devel_generate_word(mt_rand(5, 20)) . '.' .
-      devel_generate_word(3)
+      strtolower(str_replace(" ", "", $first_name)) . '@' .
+      strtolower(str_replace(" ", "", $organization)) . '.' .
+      $domain
     );
     $contact->save();
     if ($i >= 0 and $i <10) {
