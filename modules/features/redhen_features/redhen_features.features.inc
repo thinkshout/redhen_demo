@@ -113,16 +113,9 @@ function redhen_features_default_redhen_org_type() {
     "weight" : "0",
     "data" : null
   }');
-  $items['company'] = entity_import('redhen_org_type', '{
-    "name" : "company",
-    "label" : "Company",
-    "locked" : "0",
-    "weight" : "0",
-    "data" : null
-  }');
-  $items['household'] = entity_import('redhen_org_type', '{
-    "name" : "household",
-    "label" : "Household",
+  $items['shelter'] = entity_import('redhen_org_type', '{
+    "name" : "shelter",
+    "label" : "Shelter",
     "locked" : "0",
     "weight" : "0",
     "data" : null
