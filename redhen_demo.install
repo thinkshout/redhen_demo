@@ -24,7 +24,7 @@ function redhen_demo_install_tasks_alter(&$tasks, $install_state) {
  */
 function redhen_demo_post_install(&$install_state) {
   // Set site name. Have to do this in a post-install task.
-  variable_set('site_name',  'RedHen CRM Demonstration');
+  variable_set('site_name',  'National Association of Pet Shelters (CRM Demo)');
 }
 
 /**
