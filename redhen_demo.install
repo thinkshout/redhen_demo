@@ -49,10 +49,10 @@ function redhen_demo_install() {
   redhen_demo_create_note_type_terms();
 
   // Create some organizations
-  redhen_demo_create_orgs(array('company', 'household', 'association'));
+  redhen_demo_create_orgs(array('shelter', 'foundation'));
 
   // Create some contacts
-  redhen_demo_create_contacts(array('staff', 'management'));
+  redhen_demo_create_contacts(array('staff', 'volunteer'));
 
   // Setup registrations
   redhen_demo_registration_setup();
@@ -63,12 +63,11 @@ function redhen_demo_install() {
     'redhen/contact' => array('link_title' => 'Search Contacts', 'menu-name' => 'main-menu', 'weight' => -20),
     'redhen/contact/add' => array('link_title' => 'Add contacts', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen/contact'),
     'redhen/contact/add/staff' => array('link_title' => 'Add staff', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen/contact/add'),
-    'redhen/contact/add/management' => array('link_title' => 'Add managers', 'menu-name' => 'main-menu', 'weight' => -10, 'parent_path' => 'redhen/contact/add'),
+    'redhen/contact/add/volunteer' => array('link_title' => 'Add volunteer', 'menu-name' => 'main-menu', 'weight' => -10, 'parent_path' => 'redhen/contact/add'),
     'redhen/org' => array('link_title' => 'Search Organizations', 'menu-name' => 'main-menu', 'weight' => -10),
     'redhen/org/add' => array('link_title' => 'Add organizations', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen/org'),
-    'redhen/org/add/association' => array('link_title' => 'Add an association', 'menu-name' => 'main-menu', 'weight' => -15, 'parent_path' => 'redhen/org/add'),
-    'redhen/org/add/company' => array('link_title' => 'Add a company', 'menu-name' => 'main-menu', 'weight' => -10, 'parent_path' => 'redhen/org/add'),
-        'redhen/org/add/household' => array('link_title' => 'Add a household', 'menu-name' => 'main-menu', 'weight' => -5, 'parent_path' => 'redhen/org/add'),
+    'redhen/org/add/shelter' => array('link_title' => 'Add shelter', 'menu-name' => 'main-menu', 'weight' => -15, 'parent_path' => 'redhen/org/add'),
+    'redhen/org/add/foundation' => array('link_title' => 'Add foundation', 'menu-name' => 'main-menu', 'weight' => -10, 'parent_path' => 'redhen/org/add'),
   );
   ts_install_helpers_crud_create_menu_items($coded_menu_items);
   
