@@ -18,6 +18,10 @@ function redhen_features_block_info() {
     'info' => t('RedHen CRM logo'), 
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['redhen_home'] = array(
+    'info' => t('RedHen Homepage Info'), 
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
 
   return $blocks;
 }
@@ -35,13 +39,19 @@ function redhen_features_block_view($delta = '') {
   switch ($delta) {
     case 'redhen_info':
       $block['subject'] = t('');
-      $block['content'] = '<h2><a href="http://redhencrm.com">RedHen CRM</a> is brought to you by <a href="http://thinkshout.com">ThinkShout</a>.</h2><p>We help progressive organizations achieve their goals by leveraging web and open source technologies. We treat our business and nonprofit clients as partners. Our motivation comes from knowing that they make the world a better place.</p>';
+      $block['content'] = '<h2><a href="http://redhencrm.com">RedHen CRM</a> is brought to you by <a href="http://thinkshout.com">ThinkShout</a>.</h2><p>We help progressive organizations achieve their goals by leveraging open source technologies. Our motivation comes from knowing our clients make the world a better place.</p>';
       break;
 
     case 'redhen_logo':
       $block['subject'] = t('');
       $block['content'] = '<div><a href="http://thinkshout.com"><img src="' . $ts_logo . '" /></a><a href="http://redhencrm.com"><img src="' . $rh_logo . '" /></a></div>';
       break;
+
+      case 'redhen_home':
+        $block['subject'] = t('');
+        $block['content'] = '<p>In this <b>RedHen CRM demonstration</b>, we show how the framework could be leveraged to build an association management system supporting needs of a fictional organization: The National Association of Pet Shelters.</p><p>In this example, we have created two different types (or in <em>Drupal speak</em> "entity bundles") of individual contact records - one for shelter staff and another for volunteers, each with its own unique set of fields. Similarly, we have created two different types of organization records - one for the shelters themselves and another for foundations that support the work of these organizations. We can then leverage RedHen to show the connections between these contact and organization records, as well as to manage both individual and organizational memberships within our fictional association.</p>';
+        break;
+    
     }
       
   return $block;

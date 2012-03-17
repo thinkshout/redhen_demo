@@ -124,6 +124,17 @@ function redhen_demo_install() {
       'pages' => '',
       'cache' => -1,
     ),
+    array(
+      'module' => 'redhen',
+      'delta' => 'redhen_home',
+      'theme' => 'at_commerce',
+      'status' => 1,
+      'weight' => -10,
+      'region' => 'highlighted',
+      'visibility' => '1',
+      'pages' => '<front>',
+      'cache' => -1,
+    ),
   );
   $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
   foreach ($blocks as $block) {
