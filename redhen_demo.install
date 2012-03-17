@@ -8,6 +8,26 @@
 module_load_include('inc', 'devel_generate');
 
 /**
+ * Implement hook_install_tasks_alter().
+ */
+function redhen_demo_install_tasks_alter(&$tasks, $install_state) {
+  $tasks += array(
+    'redhen_demo_post_install' => array(
+      'display_name' => st('RedHen Demo Post Install Tasks'),
+  ));
+}
+
+/**
+ * Post install tasks.
+ *
+ * @param string $install_state 
+ */
+function redhen_demo_post_install(&$install_state) {
+  // Set site name. Have to do this in a post-install task.
+  variable_set('site_name',  'RedHen CRM Demonstration');
+}
+
+/**
  * Implements hook_install().
  */
 function redhen_demo_install() {
@@ -16,8 +36,6 @@ function redhen_demo_install() {
   module_enable(array('superfish'));
   
   include_once 'ts_install_helpers/ts_install_helpers.crud.inc'; // Load helper functions.
-
-  variable_set('site_name',  'RedHen CRM Demonstration');
 
   // Set the admin theme. (NOTE: We don't want to enable it.)
   variable_set('admin_theme', 'seven');
@@ -41,14 +59,20 @@ function redhen_demo_install() {
   
   // Setup Main Menu items.
   $coded_menu_items = array(
-    'redhen' => array('link_title' => 'RedHen Dashboard', 'menu-name' => 'main-menu', 'weight' => -20),
-    'redhen/contact/add' => array('link_title' => 'Add contacts', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen'),
+    'redhen' => array('link_title' => 'Dashboard', 'menu-name' => 'main-menu', 'weight' => -25),
+    'redhen/contact' => array('link_title' => 'Search Contacts', 'menu-name' => 'main-menu', 'weight' => -20),
+    'redhen/contact/add' => array('link_title' => 'Add contacts', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen/contact'),
     'redhen/contact/add/staff' => array('link_title' => 'Add staff', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen/contact/add'),
-    'redhen/contact/add/management' => array('link_title' => 'Add managers', 'menu-name' => 'main-menu', 'weight' => -10, 'parent_path' => 'redhen/contact/add/management'),
+    'redhen/contact/add/management' => array('link_title' => 'Add managers', 'menu-name' => 'main-menu', 'weight' => -10, 'parent_path' => 'redhen/contact/add'),
+    'redhen/org' => array('link_title' => 'Search Organizations', 'menu-name' => 'main-menu', 'weight' => -10),
+    'redhen/org/add' => array('link_title' => 'Add organizations', 'menu-name' => 'main-menu', 'weight' => -20, 'parent_path' => 'redhen/org'),
+    'redhen/org/add/association' => array('link_title' => 'Add an association', 'menu-name' => 'main-menu', 'weight' => -15, 'parent_path' => 'redhen/org/add'),
+    'redhen/org/add/company' => array('link_title' => 'Add a company', 'menu-name' => 'main-menu', 'weight' => -10, 'parent_path' => 'redhen/org/add'),
+        'redhen/org/add/household' => array('link_title' => 'Add a household', 'menu-name' => 'main-menu', 'weight' => -5, 'parent_path' => 'redhen/org/add'),
   );
   ts_install_helpers_crud_create_menu_items($coded_menu_items);
   
-  // Set up some blocks
+  // Set up some blocks  
   $blocks = array(
     array(
       'module' => 'system',
