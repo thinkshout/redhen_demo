@@ -94,6 +94,26 @@ function redhen_demo_install() {
       'pages' => '',
       'cache' => -1,
     ),
+    array(
+      'module' => 'redhen_features',
+      'delta' => 'redhen_info',
+      'theme' => 'at_commerce',
+      'status' => 1,
+      'weight' => -11,
+      'region' => 'draw',
+      'pages' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'redhen_features',
+      'delta' => 'redhen_logo',
+      'theme' => 'at_commerce',
+      'status' => 1,
+      'weight' => -9,
+      'region' => 'draw',
+      'pages' => '',
+      'cache' => -1,
+    ),
   );
   $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
   foreach ($blocks as $block) {
@@ -174,7 +194,7 @@ function redhen_demo_create_orgs($bundles, $number = 50) {
 function redhen_demo_create_note_type_terms() {
   $note_type_taxonomy = taxonomy_vocabulary_machine_name_load('note_type');
   
-  $terms = array('Phone call', 'Email', 'Meeting note');
+  $terms = array('Phone call', 'Email', 'Meeting notes');
   
   foreach ($terms as $termname) {
     $term = new stdClass();
@@ -192,7 +212,7 @@ function redhen_demo_registration_setup() {
   $node = new stdClass();
   $node->type = 'event';
   node_object_prepare($node);
-  $node->title = 'Test Event';
+  $node->title = 'Sample Event';
   $node->body = devel_create_content();
   $node->uid = 1;
   $node->field_registration[LANGUAGE_NONE][0] = 'registration_type_1';
