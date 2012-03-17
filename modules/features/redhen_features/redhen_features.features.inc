@@ -106,9 +106,9 @@ function redhen_features_default_redhen_membership_type() {
  */
 function redhen_features_default_redhen_org_type() {
   $items = array();
-  $items['association'] = entity_import('redhen_org_type', '{
-    "name" : "association",
-    "label" : "Association",
+  $items['foundation'] = entity_import('redhen_org_type', '{
+    "name" : "foundation",
+    "label" : "Foundation",
     "locked" : "0",
     "weight" : "0",
     "data" : null
