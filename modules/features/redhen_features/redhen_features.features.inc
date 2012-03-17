@@ -40,9 +40,9 @@ function redhen_features_node_info() {
  */
 function redhen_features_default_redhen_contact_type() {
   $items = array();
-  $items['management'] = entity_import('redhen_contact_type', '{
-    "name" : "management",
-    "label" : "Management",
+  $items['volunteer'] = entity_import('redhen_contact_type', '{
+    "name" : "volunteer",
+    "label" : "Volunteer",
     "locked" : "0",
     "weight" : "0",
     "data" : null

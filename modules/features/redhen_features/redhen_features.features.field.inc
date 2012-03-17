@@ -144,8 +144,8 @@ function redhen_features_field_default_fields() {
     ),
   );
 
-  // Exported field: 'redhen_contact-management-redhen_contact_email'
-  $fields['redhen_contact-management-redhen_contact_email'] = array(
+  // Exported field: 'redhen_contact-volunteer-redhen_contact_email'
+  $fields['redhen_contact-volunteer-redhen_contact_email'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
@@ -165,7 +165,7 @@ function redhen_features_field_default_fields() {
       'type' => 'redhen_email',
     ),
     'field_instance' => array(
-      'bundle' => 'management',
+      'bundle' => 'volunteer',
       'deleted' => '0',
       'description' => '',
       'display' => array(
