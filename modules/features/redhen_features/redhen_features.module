@@ -27,20 +27,20 @@ function redhen_features_block_info() {
  */
 function redhen_features_block_view($delta = '') {
   
-  $rh_logo = drupal_get_path('module', 'redhen') . '/misc/redhen_logo.png';
-  $ts_logo = drupal_get_path('module', 'redhen') . '/misc/thinkshout_logo.png';
+  $rh_logo = '/' . drupal_get_path('module', 'redhen') . '/misc/redhen_logo_small.png';
+  $ts_logo = '/' . drupal_get_path('module', 'redhen') . '/misc/thinkshout_logo.png';
     
   $block = array();
 
   switch ($delta) {
     case 'redhen_info':
       $block['subject'] = t('');
-      $block['content'] = '<div style="float:left;"><h2><a href="http://redhencrm.com">RedHen CRM</a> is brought to you by <a href="http://thinkshout.com">ThinkShout</a>.</h2><p>We help progressive organizations achieve their goals by leveraging web and open source technologies. We treat our business and nonprofit clients as partners. Our motivation comes from knowing that they make the world a better place.</p></div>';
+      $block['content'] = '<h2><a href="http://redhencrm.com">RedHen CRM</a> is brought to you by <a href="http://thinkshout.com">ThinkShout</a>.</h2><p>We help progressive organizations achieve their goals by leveraging web and open source technologies. We treat our business and nonprofit clients as partners. Our motivation comes from knowing that they make the world a better place.</p>';
       break;
 
     case 'redhen_logo':
       $block['subject'] = t('');
-      $block['content'] = '<div style="float:right"><a href="http://thinkshout.com"><img src="' . $ts_logo . '" /></a><a href="http://redhencrm.com"><img src="' . $rh_logo . '" /></a></div>';
+      $block['content'] = '<div><a href="http://thinkshout.com"><img src="' . $ts_logo . '" /></a><a href="http://redhencrm.com"><img src="' . $rh_logo . '" /></a></div>';
       break;
     }
       
