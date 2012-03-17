@@ -27,7 +27,7 @@ dependencies[] = features
 dependencies[] = libraries
 dependencies[] = strongarm
 dependencies[] = token
-dependencies[] = rules
+dependencies[] = r4032login
 
 ; Developer tools
 dependencies[] = devel
