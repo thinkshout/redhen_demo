@@ -12,6 +12,7 @@ projects[redhen][download][branch] = "demo-hacks"
 
 ; RedHen dependencies
 projects[relation][subdir] = "contrib"
+projects[entity] = "1.x-dev"
 projects[entity][subdir] = "contrib"
 projects[ctools] = "1.x-dev"
 projects[ctools][subdir] = "contrib"
