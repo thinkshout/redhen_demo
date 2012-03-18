@@ -112,7 +112,7 @@ function redhen_features_field_default_fields() {
       'bundle' => 'event',
       'default_value' => array(
         0 => array(
-          'registration_type' => '',
+          'registration_type' => 'registration_type_1',
         ),
       ),
       'deleted' => '0',
@@ -122,7 +122,7 @@ function redhen_features_field_default_fields() {
           'label' => 'inline',
           'module' => 'registration',
           'settings' => array(),
-          'type' => 'registration_link',
+          'type' => 'registration_form',
           'weight' => '1',
         ),
         'teaser' => array(
