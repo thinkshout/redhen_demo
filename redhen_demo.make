@@ -12,11 +12,16 @@ projects[redhen][download][branch] = "demo-hacks"
 
 ; RedHen dependencies
 projects[relation][subdir] = "contrib"
-projects[entity] = "1.x-dev"
-projects[entity][subdir] = "contrib"
 projects[ctools] = "1.x-dev"
 projects[ctools][subdir] = "contrib"
 projects[registration][subdir] = "contrib"
+
+; Modules we want to checkout to work on
+projects[entity][type] = "module"
+projects[entity][download][type] = "git"
+projects[entity][download][url] = "git://git.drupal.org/project/entity.git"
+projects[entity][download][branch] = "7.x-1.x"
+projects[entity][subdir] = "contrib"
 
 ; Additional contrib modules and themes (Not required)
 projects[admin_menu][subdir] = "contrib"
