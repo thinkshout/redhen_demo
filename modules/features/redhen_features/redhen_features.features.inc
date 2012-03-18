@@ -64,13 +64,13 @@ function redhen_features_default_redhen_engagement_score() {
   $items = array();
   $items['engagement_score_1'] = entity_import('redhen_engagement_score', '{
     "name" : "engagement_score_1",
-    "label" : "Engagement Score 1",
+    "label" : "High-value engagement",
     "locked" : null,
     "score" : "10"
   }');
   $items['engagement_score_2'] = entity_import('redhen_engagement_score', '{
     "name" : "engagement_score_2",
-    "label" : "Engagement Score 2",
+    "label" : "Standard-value engagement",
     "locked" : null,
     "score" : "5"
   }');
@@ -130,7 +130,7 @@ function redhen_features_default_registration_type() {
   $items = array();
   $items['registration_type_1'] = entity_import('registration_type', '{
     "name" : "registration_type_1",
-    "label" : "Registration Type 1",
+    "label" : "Standard registration",
     "locked" : "0",
     "weight" : "0",
     "data" : null

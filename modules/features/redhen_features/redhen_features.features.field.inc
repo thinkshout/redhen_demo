@@ -49,7 +49,7 @@ function redhen_features_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -110,16 +110,20 @@ function redhen_features_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'event',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'registration_type' => '',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'registration',
           'settings' => array(),
-          'type' => 'registration_default',
-          'weight' => 1,
+          'type' => 'registration_link',
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -130,12 +134,13 @@ function redhen_features_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_registration',
-      'label' => 'Registration',
-      'required' => FALSE,
+      'label' => 'Register',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 0,
         'module' => 'registration',
         'settings' => array(),
         'type' => 'registration_select',
@@ -1055,7 +1060,7 @@ function redhen_features_field_default_fields() {
   t('Email');
   t('Message');
   t('Organization Role');
-  t('Registration');
+  t('Register');
   t('Type');
   t('Types of animals accepted');
   t('endpoints');
