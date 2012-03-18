@@ -144,51 +144,71 @@ function redhen_features_field_default_fields() {
     ),
   );
 
-  // Exported field: 'redhen_contact-volunteer-redhen_contact_email'
-  $fields['redhen_contact-volunteer-redhen_contact_email'] = array(
+  // Exported field: 'redhen_contact-staff-field_address'
+  $fields['redhen_contact-staff-field_address'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'redhen_contact_email',
+      'field_name' => 'field_address',
       'foreign keys' => array(),
       'indexes' => array(),
-      'module' => 'redhen_fields',
-      'settings' => array(
-        'labels' => array(
-          0 => 'home',
-          1 => 'work',
-        ),
-      ),
+      'module' => 'addressfield',
+      'settings' => array(),
       'translatable' => '0',
-      'type' => 'redhen_email',
+      'type' => 'addressfield',
     ),
     'field_instance' => array(
-      'bundle' => 'volunteer',
+      'bundle' => 'staff',
+      'default_value' => array(
+        0 => array(
+          'element_key' => 'redhen_contact|staff|field_address|und|0',
+          'thoroughfare' => '',
+          'premise' => '',
+          'locality' => '',
+          'country' => 'AF',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'redhen_fields',
-          'settings' => array(),
-          'type' => 'redhen_email_formatter',
-          'weight' => 0,
+          'module' => 'addressfield',
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
+          'type' => 'addressfield_default',
+          'weight' => 1,
         ),
       ),
       'entity_type' => 'redhen_contact',
-      'field_name' => 'redhen_contact_email',
-      'label' => 'Email',
-      'required' => FALSE,
+      'field_name' => 'field_address',
+      'label' => 'Address',
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
-        'module' => 'redhen_fields',
-        'settings' => array(),
-        'type' => 'redhen_email_widget',
-        'weight' => 1,
+        'active' => 1,
+        'module' => 'addressfield',
+        'settings' => array(
+          'available_countries' => array(
+            'US' => 'US',
+          ),
+          'format_handlers' => array(
+            'address' => 'address',
+            'name-full' => 0,
+            'name-oneline' => 0,
+            'organisation' => 0,
+          ),
+        ),
+        'type' => 'addressfield_standard',
+        'weight' => '3',
       ),
     ),
   );
@@ -237,7 +257,187 @@ function redhen_features_field_default_fields() {
         'module' => 'redhen_fields',
         'settings' => array(),
         'type' => 'redhen_email_widget',
-        'weight' => 1,
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'redhen_contact-volunteer-field_address'
+  $fields['redhen_contact-volunteer-field_address'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_address',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'addressfield',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'addressfield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'volunteer',
+      'default_value' => array(
+        0 => array(
+          'element_key' => 'redhen_contact|volunteer|field_address|und|0',
+          'thoroughfare' => '',
+          'premise' => '',
+          'locality' => '',
+          'country' => 'AF',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'addressfield',
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
+          'type' => 'addressfield_default',
+          'weight' => '1',
+        ),
+      ),
+      'entity_type' => 'redhen_contact',
+      'field_name' => 'field_address',
+      'label' => 'Address',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'addressfield',
+        'settings' => array(
+          'available_countries' => array(
+            'US' => 'US',
+          ),
+          'format_handlers' => array(
+            'address' => 'address',
+            'name-full' => 0,
+            'name-oneline' => 0,
+            'organisation' => 0,
+          ),
+        ),
+        'type' => 'addressfield_standard',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'redhen_contact-volunteer-field_availability'
+  $fields['redhen_contact-volunteer-field_availability'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_availability',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'volunteer',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Describe the availability of this volunteer to help out.',
+      'display' => array(
+        'default' => array(
+          'label' => 'inline',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+      ),
+      'entity_type' => 'redhen_contact',
+      'field_name' => 'field_availability',
+      'label' => 'Availability',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'redhen_contact-volunteer-redhen_contact_email'
+  $fields['redhen_contact-volunteer-redhen_contact_email'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'redhen_contact_email',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'redhen_fields',
+      'settings' => array(
+        'labels' => array(
+          0 => 'home',
+          1 => 'work',
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'redhen_email',
+    ),
+    'field_instance' => array(
+      'bundle' => 'volunteer',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'redhen_fields',
+          'settings' => array(),
+          'type' => 'redhen_email_formatter',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'redhen_contact',
+      'field_name' => 'redhen_contact_email',
+      'label' => 'Email',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'redhen_fields',
+        'settings' => array(),
+        'type' => 'redhen_email_widget',
+        'weight' => '1',
       ),
     ),
   );
@@ -360,6 +560,203 @@ function redhen_features_field_default_fields() {
         'settings' => array(),
         'type' => 'options_select',
         'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported field: 'redhen_org-foundation-field_address'
+  $fields['redhen_org-foundation-field_address'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_address',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'addressfield',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'addressfield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'foundation',
+      'default_value' => array(
+        0 => array(
+          'element_key' => 'redhen_org|foundation|field_address|und|0',
+          'thoroughfare' => '',
+          'premise' => '',
+          'locality' => '',
+          'country' => 'AF',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'addressfield',
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
+          'type' => 'addressfield_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'redhen_org',
+      'field_name' => 'field_address',
+      'label' => 'Address',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'addressfield',
+        'settings' => array(
+          'available_countries' => array(
+            'US' => 'US',
+          ),
+          'format_handlers' => array(
+            'address' => 'address',
+            'name-full' => 0,
+            'name-oneline' => 0,
+            'organisation' => 0,
+          ),
+        ),
+        'type' => 'addressfield_standard',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'redhen_org-shelter-field_address'
+  $fields['redhen_org-shelter-field_address'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_address',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'addressfield',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'addressfield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'shelter',
+      'default_value' => array(
+        0 => array(
+          'element_key' => 'redhen_org|shelter|field_address|und|0',
+          'thoroughfare' => '',
+          'premise' => '',
+          'locality' => '',
+          'country' => 'AF',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'addressfield',
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
+          'type' => 'addressfield_default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'redhen_org',
+      'field_name' => 'field_address',
+      'label' => 'Address',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'addressfield',
+        'settings' => array(
+          'available_countries' => array(
+            'US' => 'US',
+          ),
+          'format_handlers' => array(
+            'address' => 'address',
+            'name-full' => 0,
+            'name-oneline' => 0,
+            'organisation' => 0,
+          ),
+        ),
+        'type' => 'addressfield_standard',
+        'weight' => '2',
+      ),
+    ),
+  );
+
+  // Exported field: 'redhen_org-shelter-field_animals'
+  $fields['redhen_org-shelter-field_animals'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_animals',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'Cats' => 'Cats',
+          'Dogs' => 'Dogs',
+          'Fish' => 'Fish',
+          'Horses' => 'Horses',
+          'Snakes' => 'Snakes',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'shelter',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 1,
+        ),
+      ),
+      'entity_type' => 'redhen_org',
+      'field_name' => 'field_animals',
+      'label' => 'Types of animals accepted',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '3',
       ),
     ),
   );
@@ -649,14 +1046,18 @@ function redhen_features_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Address');
   t('Affiliation Status');
+  t('Availability');
   t('Body');
   t('Connection Status');
+  t('Describe the availability of this volunteer to help out.');
   t('Email');
   t('Message');
   t('Organization Role');
   t('Registration');
   t('Type');
+  t('Types of animals accepted');
   t('endpoints');
 
   return $fields;

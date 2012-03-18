@@ -22,6 +22,10 @@ function redhen_features_block_info() {
     'info' => t('RedHen Homepage Info'), 
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['redhen_listings'] = array(
+    'info' => t('RedHen Info on EFQ-based listings'), 
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
 
   return $blocks;
 }
@@ -51,6 +55,11 @@ function redhen_features_block_view($delta = '') {
         $block['subject'] = t('');
         $block['content'] = '<p>In this <b>RedHen CRM demonstration</b>, we show how the framework could be leveraged to build an association management system supporting a fictional organization: The National Association of Pet Shelters.</p><p>In this example, we have created two different types (or in <em>Drupal speak</em> "entity bundles") of individual contact records - one for shelter staff and another for volunteers, each with its own unique set of fields. Similarly, we have created two different types of organization records - one for the shelters themselves and another for foundations that support the work of these organizations. We can then leverage RedHen to show the connections between these contact and organization records, as well as to manage both individual and organizational memberships within our fictional association.</p>';
         break;
+      
+        case 'redhen_listings':
+          $block['subject'] = t('');
+          $block['content'] = '<p>The filterable list below leverages the new <b>Entity Field Query</b> (EFQ) approach in Drupal 7 rather than the Views module. <em>In fact, the core RedHen CRM feature set does not depend on Views at all.</em> Of course, RedHen supports Views and Rules integration through its reliance on the Entity API - and you can extend your own instance of RedHen with Views and Rules quite easily.</p><p>Why doesn\'t RedHen rely on Views? Well, for two very different reasons. First, for experienced Drupal developers looking to build complex add-ons to RedHen, we felt that Views-based interfaces were more difficult to extend programmatically than interfaces based on EFQ. Second, for non-developers, we\'ve found that the EFQ approach simplifies the process of extending RedHen. For an example of this, check out the filter form below. When Drupal fields are added to a RedHen entity bundle through the Fields UI, they are automatically exposed as filter options our listing pages.</p>';
+          break;
     
     }
       
