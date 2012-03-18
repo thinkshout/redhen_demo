@@ -28,6 +28,8 @@ dependencies[] = libraries
 dependencies[] = strongarm
 dependencies[] = token
 dependencies[] = r4032login
+dependencies[] = views
+dependencies[] = views_ui
 
 ; Developer tools
 dependencies[] = devel
