@@ -173,6 +173,17 @@ redhen/org',
       'pages' => 'redhen/org/*',
       'cache' => -1,
     ),
+    array(
+      'module' => 'redhen_features',
+      'delta' => 'redhen_registration',
+      'theme' => 'at_commerce',
+      'status' => 1,
+      'weight' => -10,
+      'region' => 'highlighted',
+      'visibility' => 1,
+      'pages' => 'redhen/manage/registrations',
+      'cache' => -1,
+    ),
   );
   $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'visibility', 'pages', 'cache'));
   foreach ($blocks as $block) {
