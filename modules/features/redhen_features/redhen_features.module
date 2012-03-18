@@ -26,6 +26,14 @@ function redhen_features_block_info() {
     'info' => t('RedHen Info on EFQ-based listings'), 
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['redhen_contact'] = array(
+    'info' => t('RedHen Info on Contact Records'), 
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['redhen_org'] = array(
+    'info' => t('RedHen Info on Contact Records'), 
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
 
   return $blocks;
 }
@@ -57,10 +65,21 @@ function redhen_features_block_view($delta = '') {
         break;
       
         case 'redhen_listings':
-          $block['subject'] = t('');
+          $block['subject'] = t('EFQ-based listings');
           $block['content'] = '<p>The filterable list below leverages the new <b>Entity Field Query</b> (EFQ) approach in Drupal 7 rather than the Views module. <em>In fact, the core RedHen CRM feature set does not depend on Views at all.</em> Of course, RedHen supports Views and Rules integration through its reliance on the Entity API - and you can extend your own instance of RedHen with Views and Rules quite easily.</p><p>Why doesn\'t RedHen rely on Views? Well, for two very different reasons. First, for experienced Drupal developers looking to build complex add-ons to RedHen, we felt that Views-based interfaces were more difficult to extend programmatically than interfaces based on EFQ. Second, for non-developers, we\'ve found that the EFQ approach simplifies the process of extending RedHen. For an example of this, check out the filter form below. When Drupal fields are added to a RedHen entity bundle through the Fields UI, they are automatically exposed as filter options our listing pages.</p>';
           break;
-    
+          case 'redhen_contact':
+            if (arg(2) != 'add') { // @TODO - Get rid of this dirty hack around block admin limitations.
+              $block['subject'] = t('Working with individual contacts');
+              $block['content'] = '<p>RedHen supports a rapidly growing suite of CRM tools. Check out the tools below for managing contact records. With RedHen, you can manage the following information about individual contacts:<ul><li>Manage an unlimited number of data fields about your contacts;</li><li>Link CRM contacts with Drupal user accounts;</li><li>Create <em>connections</em> between contacts as well as between contacts and organizations;</li><li>Add your own custom fields to these connections that further describe these relationships;</li><li>Create and manage memberships;</li><li>Create custom notes that track interactions with contacts</li><li>Track and score <em>online engagement</em> of these contacts; and</li><li>Track event registrations.</li></ul></p>'; 
+            }
+            break;
+            case 'redhen_org':
+              if (arg(2) != 'add') { // @TODO - Get rid of this dirty hack around block admin limitations.
+                $block['subject'] = t('Working with organizations');
+                $block['content'] = '<p>RedHen supports a rapidly growing suite of CRM tools. Check out the tools below for managing organization records. With RedHen, you can manage the following information about organizations:<ul><li>Manage an unlimited number of data fields about your organizations;</li><li>Create <em>connections</em> between organiations as well as between contacts and organizations;</li><li>Add your own custom fields to these connections that further describe these relationships;</li><li>Create and manage organizational memberships;</li><li>Create custom notes that track interactions with organizations</li></ul></p>'; 
+              }
+              break;
     }
       
   return $block;
