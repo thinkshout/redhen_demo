@@ -14,7 +14,7 @@ function redhen_features_relation_default_relation_types() {
   $relation_type->disabled = FALSE; /* Edit this to true to make a default relation_type disabled initially */
   $relation_type->api_version = 1;
   $relation_type->relation_type = 'redhen_affiliation';
-  $relation_type->label = 'Affiliation';
+  $relation_type->label = 'Organizational affiliation';
   $relation_type->reverse_label = 'Affiliated with';
   $relation_type->directional = 0;
   $relation_type->transitive = 0;
@@ -32,7 +32,7 @@ function redhen_features_relation_default_relation_types() {
   $relation_type->disabled = FALSE; /* Edit this to true to make a default relation_type disabled initially */
   $relation_type->api_version = 1;
   $relation_type->relation_type = 'redhen_connection';
-  $relation_type->label = 'Connection';
+  $relation_type->label = 'Personal connection';
   $relation_type->reverse_label = 'Connection';
   $relation_type->directional = 0;
   $relation_type->transitive = 0;
