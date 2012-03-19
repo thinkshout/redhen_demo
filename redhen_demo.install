@@ -47,12 +47,12 @@ function redhen_demo_post_install(&$install_state) {
   $organizations = random_data_get_all_orgs();
   redhen_demo_create_orgs($organizations);
 
-  // Create some contacts
-  redhen_demo_create_contacts(array('staff', 'volunteer'));
+  // Create some contacts and get back their email addresses.
+  $emails = redhen_demo_create_contacts(array('staff', 'volunteer'));
 
   // Setup registrations
   // Note: We call this in a post-install task to make sure fields defined in Features are available.
-  redhen_demo_registration_setup();
+  redhen_demo_registration_setup($emails);
   
   // Setup Main Menu items.
   $coded_menu_items = array(
@@ -202,8 +202,12 @@ redhen/org',
  *   Random bundle will be chosen
  *
  * @param int $number
+ * 
+ * Returns an array of email addresses of the created contacts.
  */
 function redhen_demo_create_contacts($bundles, $number = 50) {
+  
+  $emails = array();
   
   for($i=0; $i<$number; $i++) {
     $first_name = random_data_first_name();
@@ -217,11 +221,9 @@ function redhen_demo_create_contacts($bundles, $number = 50) {
       'first_name' => $first_name,
       'last_name' => $last_name,
     ));
-    $contact->setEmail(
-      strtolower(str_replace(" ", "", $first_name)) . '@' .
-      strtolower(str_replace(" ", "", $organization)) . '.' .
-      $domain
-    );
+    $email = strtolower(str_replace(" ", "", $first_name)) . '@' . strtolower(str_replace(" ", "", $organization)) . '.' . $domain;
+    $contact->setEmail($email);
+    $emails[] = $email; // Save this for later.
     $contact->save();
     if ($i >= 0 and $i <10) {
       $note = new RedhenNote(array(
@@ -235,6 +237,8 @@ function redhen_demo_create_contacts($bundles, $number = 50) {
       $note->save();
     }
   }
+  
+  return $emails;
 }
 
 /**
@@ -286,7 +290,7 @@ function redhen_demo_create_note_type_terms() {
 /**
  * Setup redhen registration stuff.
  */
-function redhen_demo_registration_setup() {
+function redhen_demo_registration_setup($emails = array()) {
   for($i=1; $i<4; $i++) {
     // First create event nodes.
     $node = new stdClass();
@@ -309,5 +313,20 @@ function redhen_demo_registration_setup() {
       )),
     );
     registration_update_entity_settings($node->nid, 'node', $fields);
+    // And finally create some actual registrations.
+    $email_key = array_rand($emails, 1);
+    $email = $emails[$email_key];
+    $registration = new Registration(
+      array(
+        'type' => 'registration_type_1',
+        'entity_id' => $node->nid,
+        'entity_type' => 'node',
+        'mail' => $email,
+        'count' => 1,
+        'author_uid' => $node->uid,
+        ),
+      'registration'
+    );
+    $registration->save();
   }
 }
