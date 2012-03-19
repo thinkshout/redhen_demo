@@ -30,6 +30,7 @@ function redhen_demo_post_install(&$install_state) {
   module_enable(array('superfish'));
   
   include_once 'ts_install_helpers/ts_install_helpers.crud.inc'; // Load helper functions.
+  include_once 'ts_install_helpers/random_data.inc'; // Load randomized contact data.
 
   // Set the admin theme. (NOTE: We don't want to enable it.)
   variable_set('admin_theme', 'seven');
@@ -43,7 +44,8 @@ function redhen_demo_post_install(&$install_state) {
   redhen_demo_create_note_type_terms();
 
   // Create some organizations
-  redhen_demo_create_orgs(array('shelter', 'foundation'));
+  $organizations = random_data_get_all_orgs();
+  redhen_demo_create_orgs($organizations);
 
   // Create some contacts
   redhen_demo_create_contacts(array('staff', 'volunteer'));
@@ -201,8 +203,7 @@ redhen/org',
  *
  * @param int $number
  */
-function redhen_demo_create_contacts($bundles, $number = 60) {
-  include_once 'ts_install_helpers/random_data.inc'; // Load randomized contact data.
+function redhen_demo_create_contacts($bundles, $number = 50) {
   
   for($i=0; $i<$number; $i++) {
     $first_name = random_data_first_name();
@@ -244,15 +245,15 @@ function redhen_demo_create_contacts($bundles, $number = 60) {
  *
  * @param int $number
  */
-function redhen_demo_create_orgs($bundles, $number = 50) {
-  for($i=0; $i < $number; $i++) {
-    $bundle = $bundles[mt_rand(0, count($bundles)-1)];
-    $org = new RedhenOrg(array(
-      'type' => $bundle,
-      'label' => devel_generate_word(mt_rand(5, 20)),
-    ));
-    $org->save();
-    if ($i >= 0 and $i <10) {
+function redhen_demo_create_orgs($organizations = array()) {
+  foreach ($organizations as $organization) {
+    $bundle = $organization['type'];
+    if ($bundle == 'foundation' || $bundle == 'shelter') {
+      $org = new RedhenOrg(array(
+        'type' => $bundle,
+        'label' => $organization['name'],
+      ));
+      $org->save();
       $note = new RedhenNote(array(
         'type' => 'redhen_note',
         'entity_type' => 'redhen_org',
