@@ -33,7 +33,7 @@ function redhen_features_relation_default_relation_types() {
   $relation_type->api_version = 1;
   $relation_type->relation_type = 'redhen_connection';
   $relation_type->label = 'Personal connection';
-  $relation_type->reverse_label = 'Connection';
+  $relation_type->reverse_label = 'Personal connection';
   $relation_type->directional = 0;
   $relation_type->transitive = 0;
   $relation_type->r_unique = 1;
