@@ -8,7 +8,7 @@ projects[drupal][version] = "7.12"
 projects[redhen][type] = "module"
 projects[redhen][download][type] = "git"
 projects[redhen][download][url] = "git://git.drupal.org/project/redhen.git"
-projects[redhen][download][branch] = "demo-hacks"
+projects[redhen][download][branch] = "master"
 
 ; RedHen dependencies
 projects[relation][subdir] = "contrib"
