@@ -350,7 +350,7 @@ function redhen_features_strongarm() {
     'logo_path' => '',
     'logo_upload' => '',
     'default_favicon' => 0,
-    'favicon_path' => '',
+    'favicon_path' => 'profiles/redhen_demo/favicon.ico',
     'favicon_upload' => '',
   );
   $export['theme_settings'] = $strongarm;
