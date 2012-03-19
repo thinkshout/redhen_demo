@@ -121,7 +121,7 @@ function redhen_demo_install() {
       'cache' => -1,
     ),
     array(
-      'module' => 'redhen',
+      'module' => 'redhen_features',
       'delta' => 'redhen_about',
       'theme' => 'at_commerce',
       'status' => 1,

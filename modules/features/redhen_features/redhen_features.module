@@ -38,7 +38,10 @@ function redhen_features_block_info() {
     'info' => t('RedHen Info on Registrations'), 
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
-
+  $blocks['redhen_about'] = array(
+    'info' => t('About RedHen CRM'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
   return $blocks;
 }
 
@@ -68,29 +71,33 @@ function redhen_features_block_view($delta = '') {
       $block['content'] = '<p>In this <b>RedHen CRM demonstration</b>, we show how the framework could be leveraged to build an association management system supporting a fictional organization: The National Association of Pet Shelters.</p><p>In this example, we have created two different types (or in <em>Drupal speak</em> "entity bundles") of individual contact records - one for shelter staff and another for volunteers, each with its own unique set of fields. Similarly, we have created two different types of organization records - one for the shelters themselves and another for foundations that support the work of these organizations. We can then leverage RedHen to show the connections between these contact and organization records, as well as to manage both individual and organizational memberships within our fictional association.</p>';
       break;
     
-      case 'redhen_listings':
-        $block['subject'] = t('EFQ-based listings');
-        $block['content'] = '<p>The filterable list below leverages the new <b>Entity Field Query</b> (EFQ) approach in Drupal 7 rather than the Views module. <em>In fact, the core RedHen CRM feature set does not depend on Views at all.</em> Of course, RedHen supports Views and Rules integration through its reliance on the Entity API - and you can extend your own instance of RedHen with Views and Rules quite easily.</p><p>Why doesn\'t RedHen rely on Views? Well, for two very different reasons. First, for experienced Drupal developers looking to build complex add-ons to RedHen, we felt that Views-based interfaces were more difficult to extend programmatically than interfaces based on EFQ. Second, for non-developers, we\'ve found that the EFQ approach simplifies the process of extending RedHen. For an example of this, check out the filter form below. When Drupal fields are added to a RedHen entity bundle through the Fields UI, they are automatically exposed as filter options our listing pages.</p>';
-        break;
-        
-        case 'redhen_contact':
-          if (arg(2) != 'add') { // @TODO - Get rid of this dirty hack around block admin limitations.
-            $block['subject'] = t('Working with individual contacts');
-            $block['content'] = '<p>RedHen supports a rapidly growing suite of CRM tools. Check out the tools below for managing contact records. With RedHen, you can manage the following information about individual contacts:<ul><li>Manage an unlimited number of data fields about your contacts;</li><li>Link CRM contacts with Drupal user accounts;</li><li>Create <em>connections</em> between contacts as well as between contacts and organizations;</li><li>Add your own custom fields to these connections that further describe these relationships;</li><li>Create and manage memberships;</li><li>Create custom notes that track interactions with contacts</li><li>Track and score <em>online engagement</em> of these contacts; and</li><li>Track event registrations.</li></ul></p>'; 
-          }
-          break;
-          
-        case 'redhen_org':
-          if (arg(2) != 'add') { // @TODO - Get rid of this dirty hack around block admin limitations.
-            $block['subject'] = t('Working with organizations');
-            $block['content'] = '<p>RedHen supports a rapidly growing suite of CRM tools. Check out the tools below for managing organization records. With RedHen, you can manage the following information about organizations:<ul><li>Manage an unlimited number of data fields about your organizations;</li><li>Create <em>connections</em> between organiations as well as between contacts and organizations;</li><li>Add your own custom fields to these connections that further describe these relationships;</li><li>Create and manage organizational memberships;</li><li>Create custom notes that track interactions with organizations</li></ul></p>'; 
-          }
-          break;
+    case 'redhen_listings':
+      $block['subject'] = t('EFQ-based listings');
+      $block['content'] = '<p>The filterable list below leverages the new <b>Entity Field Query</b> (EFQ) approach in Drupal 7 rather than the Views module. <em>In fact, the core RedHen CRM feature set does not depend on Views at all.</em> Of course, RedHen supports Views and Rules integration through its reliance on the Entity API - and you can extend your own instance of RedHen with Views and Rules quite easily.</p><p>Why doesn\'t RedHen rely on Views? Well, for two very different reasons. First, for experienced Drupal developers looking to build complex add-ons to RedHen, we felt that Views-based interfaces were more difficult to extend programmatically than interfaces based on EFQ. Second, for non-developers, we\'ve found that the EFQ approach simplifies the process of extending RedHen. For an example of this, check out the filter form below. When Drupal fields are added to a RedHen entity bundle through the Fields UI, they are automatically exposed as filter options our listing pages.</p>';
+      break;
 
-        case 'redhen_registration':
-          $block['subject'] = t('Working with registrations');
-          $block['content'] = '<p>RedHen CRM integrates seemlessly with Drupal\'s <a href="http://drupal.org/project/registration">Entity Registrations</a> module - because, well, we wrote that module too. With Entity Registrations, you can create your own unique registration forms that leverage the Fields module. These registration forms (or, in Drupal speak, "registration entity bundles") can be added to your own custom event pages.</p><p>The Entity Registrations module allows for both authenticated and unauthenticated event registrations. What\'s interesting about this is that RedHen CRM can track unauthenticated event registrations by the registrant\'s email address. This feature demonstrates the real power of RedHen CRM as an association management tool, as RedHen allows you to track interactions with website visitors - without requiring them to first log into your site.</p><p>Click on an event below to explore the registration workflow - and remember, registrations are fieldable!</p>';
-          break;
+    case 'redhen_contact':
+      if (arg(2) != 'add') { // @TODO - Get rid of this dirty hack around block admin limitations.
+        $block['subject'] = t('Working with individual contacts');
+        $block['content'] = '<p>RedHen supports a rapidly growing suite of CRM tools. Check out the tools below for managing contact records. With RedHen, you can manage the following information about individual contacts:<ul><li>Manage an unlimited number of data fields about your contacts;</li><li>Link CRM contacts with Drupal user accounts;</li><li>Create <em>connections</em> between contacts as well as between contacts and organizations;</li><li>Add your own custom fields to these connections that further describe these relationships;</li><li>Create and manage memberships;</li><li>Create custom notes that track interactions with contacts</li><li>Track and score <em>online engagement</em> of these contacts; and</li><li>Track event registrations.</li></ul></p>';
+      }
+      break;
+          
+    case 'redhen_org':
+      if (arg(2) != 'add') { // @TODO - Get rid of this dirty hack around block admin limitations.
+        $block['subject'] = t('Working with organizations');
+        $block['content'] = '<p>RedHen supports a rapidly growing suite of CRM tools. Check out the tools below for managing organization records. With RedHen, you can manage the following information about organizations:<ul><li>Manage an unlimited number of data fields about your organizations;</li><li>Create <em>connections</em> between organiations as well as between contacts and organizations;</li><li>Add your own custom fields to these connections that further describe these relationships;</li><li>Create and manage organizational memberships;</li><li>Create custom notes that track interactions with organizations</li></ul></p>';
+      }
+      break;
+
+    case 'redhen_registration':
+      $block['subject'] = t('Working with registrations');
+      $block['content'] = '<p>RedHen CRM integrates seemlessly with Drupal\'s <a href="http://drupal.org/project/registration">Entity Registrations</a> module - because, well, we wrote that module too. With Entity Registrations, you can create your own unique registration forms that leverage the Fields module. These registration forms (or, in Drupal speak, "registration entity bundles") can be added to your own custom event pages.</p><p>The Entity Registrations module allows for both authenticated and unauthenticated event registrations. What\'s interesting about this is that RedHen CRM can track unauthenticated event registrations by the registrant\'s email address. This feature demonstrates the real power of RedHen CRM as an association management tool, as RedHen allows you to track interactions with website visitors - without requiring them to first log into your site.</p><p>Click on an event below to explore the registration workflow - and remember, registrations are fieldable!</p>';
+      break;
+
+    case 'redhen_about':
+      $block['content'] = '<p><a href="http://drupal.org/project/redhen">RedHen CRM</a> is an open source CRM <em>framework</em> built natively in <a href="http://drupal.org">Drupal</a>. RedHen CRM is packed with <a href="http://en.wikipedia.org/wiki/Association_management_system">association management</a> (AMS) features for managing detailed information on contacts and organizations, membership services, event registrations, and constituent engagement.</p>';
+      break;
     }
       
   return $block;
