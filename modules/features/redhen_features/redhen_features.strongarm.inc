@@ -349,7 +349,8 @@ function redhen_features_strongarm() {
     'default_logo' => 1,
     'logo_path' => '',
     'logo_upload' => '',
-    'default_favicon' => 1,
+    'default_favicon' => 0,
+    'favicon_path' => 'profiles/redhen_demo/favicon.ico',
     'favicon_path' => '',
     'favicon_upload' => '',
   );
