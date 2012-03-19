@@ -47,8 +47,8 @@ function redhen_features_block_info() {
  */
 function redhen_features_block_view($delta = '') {
   
-  $rh_logo = '/' . drupal_get_path('module', 'redhen') . '/misc/redhen_logo_small.png';
-  $ts_logo = '/' . drupal_get_path('module', 'redhen') . '/misc/thinkshout_logo.png';
+  $rh_logo = '/' . drupal_get_path('module', 'redhen_features') . '/misc/redhen_logo_small.png';
+  $ts_logo = '/' . drupal_get_path('module', 'redhen_features') . '/misc/thinkshout_logo.png';
     
   $block = array();
 
