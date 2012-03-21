@@ -53,6 +53,9 @@ function redhen_demo_post_install(&$install_state) {
   // Setup registrations
   // Note: We call this in a post-install task to make sure fields defined in Features are available.
   redhen_demo_registration_setup($emails);
+
+  // setup some engagement scores
+  redhen_demo_engagement_scores(count($emails));
   
   // Setup Main Menu items.
   $coded_menu_items = array(
@@ -328,5 +331,16 @@ function redhen_demo_registration_setup($emails = array()) {
       'registration'
     );
     $registration->save();
+  }
+}
+
+/**
+ * Setup some engagement scores.
+ */
+function redhen_demo_engagement_scores($num_contacts = 50) {
+  for ($i=1; $i<100; $i++) {
+    $contact_id = mt_rand(1, $num_contacts);
+    $engagement = redhen_engagement_create('engagement_score_' . mt_rand(1,2), $contact_id, devel_generate_word(mt_rand(10,30)));
+    redhen_engagement_save($engagement);
   }
 }
