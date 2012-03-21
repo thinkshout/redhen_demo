@@ -145,7 +145,7 @@ function redhen_features_views_default_views() {
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'redhen/manage/registrations';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Mange registrations';
+  $handler->display->display_options['menu']['title'] = 'Manage registrations';
   $handler->display->display_options['menu']['weight'] = '30';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
