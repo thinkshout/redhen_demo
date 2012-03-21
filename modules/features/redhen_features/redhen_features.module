@@ -77,14 +77,16 @@ function redhen_features_block_view($delta = '') {
       break;
 
     case 'redhen_contact':
-      if (arg(2) != 'add') { // @TODO - Get rid of this dirty hack around block admin limitations.
+      $menu_item = menu_get_item();
+      if ($menu_item['path'] == 'redhen/contact/%') {
         $block['subject'] = t('Working with individual contacts');
         $block['content'] = '<p>RedHen supports a rapidly growing suite of CRM tools. Check out the tools below for managing contact records. With RedHen, you can manage the following information about individual contacts:<ul><li>Manage an unlimited number of data fields about your contacts;</li><li>Link CRM contacts with Drupal user accounts;</li><li>Create <em>connections</em> between contacts as well as between contacts and organizations;</li><li>Add your own custom fields to these connections that further describe these relationships;</li><li>Create and manage memberships;</li><li>Create custom notes that track interactions with contacts</li><li>Track and score <em>online engagement</em> of these contacts; and</li><li>Track event registrations.</li></ul></p>';
       }
       break;
           
     case 'redhen_org':
-      if (arg(2) != 'add') { // @TODO - Get rid of this dirty hack around block admin limitations.
+      $menu_item = menu_get_item();
+      if ($menu_item['path'] == 'redhen/org/%') {
         $block['subject'] = t('Working with organizations');
         $block['content'] = '<p>RedHen supports a rapidly growing suite of CRM tools. Check out the tools below for managing organization records. With RedHen, you can manage the following information about organizations:<ul><li>Manage an unlimited number of data fields about your organizations;</li><li>Create <em>connections</em> between organiations as well as between contacts and organizations;</li><li>Add your own custom fields to these connections that further describe these relationships;</li><li>Create and manage organizational memberships;</li><li>Create custom notes that track interactions with organizations</li></ul></p>';
       }
